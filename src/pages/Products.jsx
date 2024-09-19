@@ -6,10 +6,16 @@ import Loading from '../components/Loading';
 import Error from '../components/Error';
 import {FlatList, SafeAreaView} from 'react-native';
 
-export default function Products() {
+export default function Products({navigation}) {
   const {loading, data, error} = useFetch(Config.API_URL);
 
-  const renderProduct = ({item}) => <ProductCard product={item} />;
+  const handleProductSelect = id => {
+    navigation.navigate('DetailPage', {id});
+  };
+
+  const renderProduct = ({item}) => (
+    <ProductCard product={item} onSelect={() => handleProductSelect(item.id)} />
+  );
 
   if (loading) {
     return <Loading />;
@@ -18,9 +24,5 @@ export default function Products() {
     return <Error />;
   }
 
-  return (
-    <SafeAreaView>
-      <FlatList data={data} renderItem={renderProduct} />
-    </SafeAreaView>
-  );
+  return <FlatList data={data} renderItem={renderProduct} />;
 }

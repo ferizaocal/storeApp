@@ -1,15 +1,23 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 
-export default function ProductCard({product}) {
+export default function ProductCard({product, onSelect}) {
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={{uri: product.image}} />
-      <View style={styles.body_container}>
-        <Text style={styles.title}>{product.title}</Text>
-        <Text style={styles.price}>{product.price}</Text>
+    <TouchableWithoutFeedback onPress={onSelect}>
+      <View style={styles.container}>
+        <Image style={styles.image} source={{uri: product.image}} />
+        <View style={styles.body_container}>
+          <Text style={styles.title}>{product.title}</Text>
+          <Text style={styles.price}>{product.price}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 const styles = StyleSheet.create({
