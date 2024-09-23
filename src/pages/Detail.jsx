@@ -9,7 +9,7 @@ const deviceSize = Dimensions.get('window');
 
 export default function Detail({route}) {
   const {id} = route.params;
-  const {loading, error, data} = useFetch(`${Config.API_URL}/${id}`);
+  const {loading, error, data} = useFetch(`${Config.API_PRODUCT_URL}/${id}`);
 
   if (loading) {
     return <Loading />;

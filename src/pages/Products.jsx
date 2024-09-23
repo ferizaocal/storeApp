@@ -7,7 +7,7 @@ import Error from '../components/Error';
 import {FlatList, SafeAreaView} from 'react-native';
 
 export default function Products({navigation}) {
-  const {loading, data, error} = useFetch(Config.API_URL);
+  const {loading, data, error} = useFetch(Config.API_PRODUCT_URL);
 
   const handleProductSelect = id => {
     navigation.navigate('DetailPage', {id});

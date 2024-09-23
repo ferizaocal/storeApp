@@ -4,6 +4,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Products from './src/pages/Products';
 import Detail from './src/pages/Detail';
+import Login from './src/pages/Login';
 
 const Stack = createStackNavigator();
 
@@ -11,6 +12,14 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="LoginPage"
+          component={Login}
+          options={{
+            title: 'Mağaza',
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="ProductsPage"
           component={Products}
