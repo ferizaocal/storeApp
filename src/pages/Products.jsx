@@ -4,11 +4,14 @@ import ProductCard from '../components/ProductCard';
 import useFetch from '../hooks/useFetch';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
-import {FlatList, SafeAreaView} from 'react-native';
+import {Button, FlatList, SafeAreaView, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {AuthActions} from '../store/features/authReducers';
 
 export default function Products({navigation}) {
   const {loading, data, error} = useFetch(Config.API_PRODUCT_URL);
-
+  const dispatch = useDispatch();
+  const token = data.token;
   const handleProductSelect = id => {
     navigation.navigate('DetailPage', {id});
   };
@@ -24,5 +27,9 @@ export default function Products({navigation}) {
     return <Error />;
   }
 
-  return <FlatList data={data} renderItem={renderProduct} />;
+  return (
+    <View>
+      <FlatList data={data} renderItem={renderProduct} />
+    </View>
+  );
 }
